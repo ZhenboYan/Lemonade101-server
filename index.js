@@ -14,6 +14,6 @@ app.get("/:name", (req, res) => {
   res.send(`Hello ${req.params.name}`);
 });
 
-// app.get("/:pic/:ms", (req, res) => {
-//   res.sendFile('/ms.jpag');
-// });
+app.get("/:pic/:ms", (req, res) => {
+  res.sendFile('/ms.jpag');
+});
