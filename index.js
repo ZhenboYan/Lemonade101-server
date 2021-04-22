@@ -14,6 +14,6 @@ app.get("/:name", (req, res) => {
   res.send(`Hello ${req.params.name}`);
 });
 
-app.get('/report/:chart_id/:user_id', function (req, res) {
+app.get("/:pic/:ms", (req, res) => {
   res.sendFile('/ms.jpag');
 });
