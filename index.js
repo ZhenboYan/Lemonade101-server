@@ -7,9 +7,13 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send(`Welcome to my server! This is the homepage on port ${port}`);
+  res.send(`Welcome to ZHENBO's server! This is the homepage on port ${port}`);
 });
 
 app.get("/:name", (req, res) => {
   res.send(`Hello ${req.params.name}`);
+});
+
+app.get('/report/:chart_id/:user_id', function (req, res) {
+  res.sendFile('/ms.jpag');
 });
