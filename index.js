@@ -15,5 +15,5 @@ app.get("/:name", (req, res) => {
 });
 
 app.get("/:name/:pic", (req, res) => {
-  res.sendFile('/ms.jpg');
+  res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/ms.jpg');
 });
