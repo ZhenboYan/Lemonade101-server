@@ -15,10 +15,5 @@ app.get("/:name", (req, res) => {
 });
 
 app.get("/:name/:pic", (req, res) => {
-  res.send(`Welcome to Lemonade's server! This is the homepage on port ${port}`);
-  res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/ms.jpg');
-});
-
-app.get("/:name/:ms/:perfect", (req, res) => {
-  res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/perfect.jpg');
+   res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/lemonade_sleep.jpg');
 });
