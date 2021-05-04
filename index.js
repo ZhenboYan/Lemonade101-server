@@ -15,7 +15,11 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-  response.sendFile(__dirname+"/template/index.html");
+  res.sendFile(__dirname+"/template/index.html");
+});
+
+app.get("/", function (request, response){
+  response.sendFile(__dirname+"/index.html");
 });
 
 app.get("/feeding", (req, res) => {
