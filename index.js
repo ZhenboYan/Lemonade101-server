@@ -14,6 +14,21 @@ try {
   console.error(err)
 }
 
+// API:
+fetch('/calories', {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+      user: {
+          name: "John",
+          email: "john@example.com"
+      }
+  })
+});
+
+// Pages:
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
@@ -32,3 +47,13 @@ app.get("/feeding", (req, res) => {
 // });
 
 app.use('/', router);
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded());
+
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
+// Access the parse results as request.body
+app.post('/calories', function(request, response){
+    console.log(request.body.user.email);
+});
