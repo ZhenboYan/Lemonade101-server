@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
   res.sendFile(__dirname+"/template/base.html");
 });
 
-router.get("/feeding", (req, res) => {
+app.get("/feeding", (req, res) => {
   // res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/temp_data.txt');
   res.send(data);
 });
