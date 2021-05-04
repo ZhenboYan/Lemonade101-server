@@ -17,7 +17,7 @@ app.listen(port, () => {
 });
 
 router.get("/", (req, res) => {
-  res.sendFile(__dirname+"/template/index.html");
+  res.sendFile(__dirname+"/template/base.html");
 });
 
 router.get("/feeding", (req, res) => {
