@@ -11,13 +11,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:name", (req, res) => {
-  res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/temp_data.txt');
+  res.send(`Hello ${req.params.name}`);
 });
 
-// app.get("/:name", (req, res) => {
-//   res.send(`Hello ${req.params.name}`);
-// });
-
-// app.get("/:name/:pic", (req, res) => {
-//    res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/lemonade_sleep.jpg');
-// });
+app.get("/:name/:pic", (req, res) => {
+   res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/lemonade_sleep.jpg');
+});
