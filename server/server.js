@@ -1,8 +1,8 @@
-var express = require("express");
+const express = require("express");
 const port = 8080;
  
 //use the application off of express.
-var app = express();
+const app = express();
  
 //define the route for "/"
 app.get("/", function (request, response){
@@ -10,7 +10,7 @@ app.get("/", function (request, response){
 });
  
 app.get("/getemail", function (request, response){
-    var firstname = request.query.firstname;
+    const firstname = request.query.firstname;
  
     if (firstname != "") {
         response.send("Your email address is " + firstname + "@gullele.com");
