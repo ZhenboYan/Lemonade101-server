@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 //   res.send(`Hello ${req.params.name}`);
 // });
 
-app.get("/:name", (req, res) => {
+app.get("/:file", (req, res) => {
   res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/temp_data.txt');
 });
 
