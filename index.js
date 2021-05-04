@@ -18,10 +18,6 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname+"/template/index.html");
 });
 
-app.get("/", function (request, response){
-  response.sendFile(__dirname+"/index.html");
-});
-
 app.get("/feeding", (req, res) => {
   res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/temp_data.txt');
 });
