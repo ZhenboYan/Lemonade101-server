@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block blockname %}
+    <h1>Input PlayerID to Display All Data Associated with the Player </h1>
+    {% if title == 'Showall' %}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.showall.label }}<br>
+            {{ form.showall(size=32) }}
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    {% else %}
+	{% if stats %}
+	    <center>
+            <table border="1"><tr><th>bat_ID</th><th>playerid</th><th>yearID</th><th>stint</th><th>teamID</th><th>lgID</th><th>ba_G</th><th>ba_AB</th><th>ba_R</th><th>ba_H</th><th>ba_2B</th><th>ba_3B</th><th>ba_HR</th><th>ba_RBI</th><th>ba_SB</th><th>ba_CS</th><th>ba_BB</th><th>ba_SO</th><th>ba_IBB</th><th>ba_HBP</th><th>ba_SH</th><th>ba_SF</th><th>ba_GIDP</th></tr>
+            {% for line in stats %}
+            <tr>
+                    <td>{{line.bat_ID}}</td>
+                    <td>{{line.playerid}}</td>
+                    <td>{{line.yearID}}</td>
+                    <td>{{line.stint}}</td>
+                    <td>{{line.teamID}}</td>
+                    <td>{{line.lgID}}</td>
+                    <td>{{line.ba_G}}</td>
+                    <td>{{line.ba_AB}}</td>
+                    <td>{{line.ba_R}}</td>
+                    <td>{{line.ba_H}}</td>
+                    <td>{{line.ba_2B}}</td>
+                    <td>{{line.ba_3B}}</td>
+                    <td>{{line.ba_HR}}</td>
+                    <td>{{line.ba_RBI}}</td>
+                    <td>{{line.ba_SB}}</td>
+                    <td>{{line.ba_CS}}</td>
+                    <td>{{line.ba_BB}}</td>
+                    <td>{{line.ba_SO}}</td>
+                    <td>{{line.ba_IBB}}</td>
+                    <td>{{line.ba_HBP}}</td>
+                    <td>{{line.ba_SH}}</td>
+                    <td>{{line.ba_SF}}</td>
+                    <td>{{line.ba_GIDP}}</td>
+            </tr>
+            {% endfor %}
+            </table>
+            </center>
+	{% else %}
+	    <h3>No results found</h3>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

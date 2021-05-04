@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block blockname %}
+<span style="color: Gray;">
+    <h1>Player {{ title }} </h1>
+    {% if title == 'Search' %}
+	
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.playerid.label }}<br>
+            {{ form.playerid(size=32) }}
+        </p>
+        <p>
+            {{ form.yearid.label }}<br>
+            {{ form.yearid(size=32) }}
+        </p>
+        <p>
+            {{ form.teamid.label }}<br>
+            {{ form.teamid(size=32) }}
+        </p>
+        <p>
+            {{ form.lgid.label }}<br>
+            {{ form.lgid(size=32) }}
+        </p>
+</span>
+        <p><span style="color: DodgerBlue;">
+            {{ form.G.label }}
+            {{ form.G(size=32) }}
+            {{ form.AB.label }}
+            {{ form.AB(size=32) }}
+            {{ form.R.label }}
+            {{ form.R(size=32) }}
+            {{ form.H.label }}
+            {{ form.H(size=32) }}
+            {{ form.B2.label }}
+            {{ form.B2(size=32) }}
+            {{ form.B3.label }}
+            {{ form.B3(size=32) }}
+            {{ form.HR.label }}
+            {{ form.HR(size=32) }}
+            {{ form.RBI.label }}
+            {{ form.RBI(size=32) }}
+            {{ form.SB.label }}
+            {{ form.SB(size=32) }}
+            {{ form.CS.label }}
+            {{ form.CS(size=32) }}
+            {{ form.BB.label }}
+            {{ form.BB(size=32) }}
+            {{ form.SO.label }}
+            {{ form.SO(size=32) }}
+            {{ form.IBB.label }}
+            {{ form.IBB(size=32) }}
+            {{ form.HBP.label }}
+            {{ form.HBP(size=32) }}
+            {{ form.SH.label }}
+            {{ form.SH(size=32) }}
+            {{ form.SF.label }}
+            {{ form.SF(size=32) }}
+            {{ form.GIDP.label }}
+            {{ form.GIDP(size=32) }}
+			</span>
+			<span style="color: Gray;">
+			
+        </p>		
+        <p>{{ form.submit() }}</p>
+		</span>
+    </form>
+    {% else %}
+	{% if searchstats %}
+	    <center>
+            <table border="1"><tr><th>Name</th><th>Year</th><th>RC</th><th>RC27</th></tr>
+            {% for line in searchstats %}
+            <tr>
+                    <td>{{line.playerid}}</td>
+                    <td>{{line.yearID}}</td>
+                    <td>{{line.RC}}</td>
+                    <td>{{line.RC27}}</td>
+            </tr>
+            {% endfor %}
+            </table>
+            </center>
+	{% else %}
+	    <h3>No results found</h3>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
