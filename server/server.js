@@ -3,7 +3,12 @@ const port = 8080;
  
 //use the application off of express.
 const app = express();
- 
+
+//start the server
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+});
+
 //define the route for "/"
 app.get("/", function (request, response){
     response.sendFile(__dirname+"/index.html");
@@ -19,7 +24,3 @@ app.get("/getemail", function (request, response){
     }
 });
  
- //start the server
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
