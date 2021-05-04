@@ -5,7 +5,7 @@ var express = require("express");
  
  //define the route for "/"
  app.get("/", function (request, response){
-     response.sendFile(__dirname+"/views/index.html");
+     response.sendFile(__dirname+"/index.html");
  });
  
  app.get("/getemail", function (request, response){
