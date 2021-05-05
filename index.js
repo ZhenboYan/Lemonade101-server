@@ -15,18 +15,18 @@ try {
 }
 
 // API:
-fetch('/calories', {
-  method: 'POST',
-  headers: {
-      'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-      user: {
-          name: "John",
-          email: "john@example.com"
-      }
-  })
-});
+// fetch('/calories', {
+//   method: 'POST',
+//   headers: {
+//       'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({
+//       user: {
+//           name: "John",
+//           email: "john@example.com"
+//       }
+//   })
+// });
 
 // Pages:
 app.listen(port, () => {
@@ -54,6 +54,6 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 // Access the parse results as request.body
-app.post('/calories', function(request, response){
-    console.log(request.body.user.email);
-});
+// app.post('/calories', function(request, response){
+//     console.log(request.body.user.email);
+// });
