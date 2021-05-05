@@ -28,8 +28,8 @@ app.get("/feeding", (req, res) => {
 });
 
 app.get("/lemonade", (req, res) => {
-    // res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/lemonade_sleep.jpg');
-    res.sendFile(__dirname+"/template/lemonade.html");
+    res.sendFile('/home/bitnami/htdocs/Lightsail-Setup-Custom-Domain-SSL/Lightsail-Setup-Custom-Domain-SSL-main/lemonade_sleep.jpg');
+    // res.sendFile(__dirname+"/template/lemonade.html");
  });
 
 app.use('/', router);
