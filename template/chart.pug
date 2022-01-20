@@ -1,0 +1,196 @@
+html
+    head 
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.0/chart.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js")
+        //- meta(http-equiv="refresh" content="2")
+        title Analysis | Lemonade101
+        link(rel="stylesheet" href="https://lemonade101.page/base/basecss")
+        script(src="https://unpkg.com/swup@latest/dist/swup.min.js")
+        script.
+            window.onload = function() {
+                if(!window.location.hash) {
+                    window.location = window.location + '#loaded';
+                    window.location.reload();
+                }
+            }
+
+    body
+    
+        header(class="main-header")
+            nav(class="nav main-nav")
+                //- div(class="btn-toggle-nav" onclick="toggleNav()")
+                ul
+                    li
+                        a(href="https://lemonade101.page") Home
+            
+        main(id="swup" class="transition-fade")
+            nav(class="nav main-nav-second")
+                ul
+                    li
+                        a(href="https://lemonade101.page/chart" class="barchart") Bar
+                    li
+                        a(href="https://lemonade101.page/chart/line") Line
+                    li
+                        a(href="https://lemonade101.page/chart/latest") Hour
+                    li
+                        a(href="https://lemonade101.page/chart/feeding") Feeding
+                    li
+                        a(href="https://lemonade101.page/chart/monthly") Monthly
+
+                
+            nav(class="nav main-nav")
+            h6(class="bluechart") Bar Chart
+
+            div(class="container container-chart")
+                canvas(id="myChart")
+                script.
+                    function calculate(){
+                        var weight = document.getElementById("weight_input").value;
+                        var protein = document.getElementById("protein_input").value;
+                        var food = document.getElementById("food_input").value;
+                        
+                        document.getElementById("recommended_intake").innerHTML = "Recommended Minimum Protein Intake: " + 2*weight +"g";
+                        document.getElementById('recommended_intake').style.display = "block";
+                        document.getElementById("calculated_intake").innerHTML = "Actual Protein Intake: " + protein*food/100 + "g";
+                        document.getElementById('calculated_intake').style.display = "block";
+                    }
+
+                    console.log("Please Refresh the Page");
+                    
+                    let myChart = document.getElementById('myChart').getContext('2d');
+                    // Chart.defaults.font.family = 'Georgia';
+                    Chart.defaults.font.size=12;
+                    Chart.defaults.color='black';
+
+                    let index = 0;
+                    let total_consumption = [0,0,0,0,0,0,0];
+                    let days = ["0","0","0","0","0","0","0"];
+                    let consumption = 0;
+                    var obj = !{JSON.stringify(obj)};
+                    let last_day = obj[obj.length-1].Day;
+                    let day_counter = 0;
+                    let i = 1;
+
+                    while(day_counter<7 && i < obj.length){
+                        if(obj[obj.length-i].Day == last_day){
+                            if(obj[obj.length-i].Status == 'Eating'){
+                                total_consumption[day_counter] = total_consumption[day_counter] + Math.abs(obj[obj.length-i].Change);
+                            }
+                        }
+                        else{
+                            days[day_counter] = last_day;
+                            last_day = obj[obj.length-i].Day;
+                            day_counter = day_counter + 1;
+                        }
+                        i = i + 1;
+                    }
+                    days[day_counter] = last_day;
+
+                    // loop through each date to find the sum of consumption
+                    let massPopChart = new Chart(myChart,{
+                        type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                        data: {
+                            labels:[days[6],days[5],days[4],days[3],days[2],days[1],days[0]],
+                            datasets:[{
+                                label:'Consumption(g)',
+                                data:[
+                                total_consumption[6],
+                                total_consumption[5],
+                                total_consumption[4],
+                                total_consumption[3],
+                                total_consumption[2],
+                                total_consumption[1],
+                                total_consumption[0],
+                                ],
+                                backgroundColor:[
+                                    'rgb(255, 99, 132, 0.95)',
+                                    'rgb(54, 162, 235, 0.95)',
+                                    'rgb(255, 206, 86, 0.95)',
+                                    'rgb(75, 192, 192, 0.95)',
+                                    'rgb(153, 102, 255, 0.95)',
+                                    'rgb(255, 159, 64, 0.95)',
+                                    'pink'
+                                ],
+                                borderWidth:0.5,
+                                borderColor: '#777',
+                                hoverBorderWidth:3,
+                                hoverBorderColor: 'white'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins:{
+                                title:{
+                                    display:true,
+                                    text:'Food Consumption (g)',
+                                    fontSize:25
+                                },
+                                legend:{
+                                    display:false, //true for pie
+                                    position:'right',
+                                    labels:{
+                                        color:'pink'
+                                    }
+                                },
+                                annotation: {
+                                    annotations: {
+                                        line_min:{
+                                            type: 'line',
+                                            yMin: 50,
+                                            yMax: 50,
+                                            borderColor: 'black',
+                                            borderWidth: 2,
+                                        },
+                                        line_max:{
+                                            type: 'line',
+                                            yMin: 70,
+                                            yMax: 70,
+                                            borderColor: 'red',
+                                            borderWidth: 2,
+                                        }
+                                    }
+                                }
+                            },
+                            layout:{
+                                padding:{
+                                    left:0,
+                                    right:0,
+                                    bottom:0,
+                                    top:0
+                                }
+                            }
+                        }                
+                    })
+                
+
+            form(class="calculator")
+                label(for="protein_counter") Protein Counter Input Following Data:
+                div(class="input_div")
+                    br
+                    br
+                    input(id="weight_input" type="text" value="Cat's Body Weight (pounds)" onClick="this.select();" )
+                    br
+                    br
+                    input(id="protein_input" type="text" value="Percentage of Proteins (e.g. 35% input 35)" onClick="this.select();" )
+                    br
+                    br
+                    input(id="food_input" type="text" value="Food Consumption (e.g. 10g input 10)" onClick="this.select();" )
+                    br
+                    br
+                    div(id="recommended_intake" style="display:none;" class="answer_list") 
+                    div(id="calculated_intake" style="display:none;" class="answer_list") Protein Intake:
+                    br
+                    input(class="button_input" type="button" name="answer" value="Calculate" onclick="calculate()")
+            
+            script.
+                const swup = new Swup;
+                const init = () =>{
+                    if(!window.location.hash) {
+                            window.location = window.location + '#loaded';
+                            window.location.reload();
+                    }
+                }
+                swup.on('contentReplaced', init);

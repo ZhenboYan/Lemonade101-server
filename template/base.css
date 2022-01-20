@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css?family=Cute+Font');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Myriad');
+* {
+    box-sizing: border-box;
+    font-family: "Dancing Script";
+    /* color: black; */
+}
+
+.aboutus-head{
+    font-family: "Indie Flower";
+    font-size: 2em;
+    /* color: skyblue; */
+    color: #0077b5;
+
+}
+.linkedin-image{
+    height:"35px";
+}
+
+.linkedin{
+    font-family: "Karla";
+    font-size: 1.4em;
+    color: #0077b5;
+    text-decoration: none;
+    font-weight: bold;
+    height: 25px;
+}
+
+.aboutus{
+    font-family: "Indie Flower";
+    font-size: 1.2em;
+}
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+.background{
+    /* display: block; */
+    /* overflow-x:scroll; */
+    background-image: url('https://purewows3.imgix.net/images/articles/2020_04/substitute-for-lemons.jpg?auto=format,compress&cs=strip');
+    background-image: url('https://thumbs.dreamstime.com/b/pink-lemonade-seamless-vector-pattern-tile-yellow-lemons-round-halves-slices-arranged-background-stand-picnic-party-93176564.jpg');
+    border-top: 3px solid pink;
+    border-bottom: 3px solid pink;
+}
+
+.background:hover{
+    border-top: 3px solid yellow;
+    border-bottom: 3px solid yellow;
+}
+
+.nav ul{
+    margin: 0;
+}
+
+.nav li{
+    display: inline;
+}
+
+.nav a{
+    display: inline-block;
+    padding: .5em;
+    color: white;
+    text-decoration: none;
+}
+
+.nav a:hover{
+    background-color: pink;
+}
+
+.main-nav li, .main-nav-second li{
+    padding: 0 5%;
+}
+
+.main-nav, .main-nav-second {
+    text-align: center;
+    font-size: 2em;
+    font-weight: lighter;
+    border-bottom: 1px solid pink;
+}
+
+.main-nav-blue{
+    text-align: center;
+    font-size: 2em;
+    font-weight: lighter;
+    border-bottom: 1px solid lightblue;
+}
+
+.main-nav-second {
+    text-align: center;
+    font-size: 2em;
+    font-weight: lighter;
+    background-color: black;
+    flex-direction: row;
+    margin-top: 0;
+}
+
+.bluechart{
+    color: deepskyblue;
+}
+
+.secondchart{
+    color: goldenrod;
+}
+
+.fourthchart{
+    color:silver;
+}
+
+.thirdchart{
+    color:tomato;
+}
+
+.thismonth{
+    color:olivedrab;
+}
+
+.bluechart, .secondchart, .thirdchart, .fourthchart, .thismonth ,.lastmonth{
+    position: absolute;
+    font-size: 1em;
+    margin-left: 1rem;
+    padding-bottom: 0;
+    text-decoration: none;
+    margin-top: 1rem;
+    font-size: 25;
+}
+
+.barchart{
+    background-color: deepskyblue;
+}
+
+.main-nav-second a.barchart:hover {
+    background-color: deepskyblue;
+}
+
+.linechart{
+    background-color: goldenrod;
+}
+
+.main-nav-second a.linechart:hover {
+    background-color: goldenrod;
+}
+
+.feedingchart{
+    background-color: silver;
+}
+
+.main-nav-second a.feedingchart:hover {
+    background-color: silver;
+}
+
+.hourchart{
+    background-color: tomato;
+}
+
+.main-nav-second a.hourchart:hover {
+    background-color: tomato;
+}
+
+.monthlychart{
+    background-color: olivedrab;
+}
+
+.main-nav-second a.monthlychart:hover {
+    background-color: olivedrab;
+}
+
+/* .btn-toggle-nav{
+    width: 50px;
+    height: 50px;
+    background-image: url("https://mpng.subpng.com/20190314/apa/kisspng-computer-icons-vector-graphics-clip-art-hamburger-5c8ad46db1d6e1.1831787715526022217284.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    cursor: pointer;
+} */
+
+.home{
+    margin-left: 29em;
+}
+
+.main-header{
+    background-color:black;
+    padding-bottom: 30px;
+}
+
+.main-header-mainpage{
+    background-color:black;
+    /* padding-bottom: 30px; */
+}
+
+.title-name{
+    text-align: center;
+    margin: 0; 
+    font-size: 5em;
+    font-family: "Dancing Script";
+    font-weight: normal;
+    color: white;
+    padding-top: 0.4em;
+}
+
+.title-name-smaller{
+    text-align: center;
+    margin: 0; 
+    font-size: 3em;
+    font-family: "Dancing Script";
+    font-weight: normal;
+    color: white;
+    padding-top: 0.4em;
+}
+
+.content-section{
+    margin: 1em;
+}
+
+.container{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+
+.container-chart{
+    padding-top: 75px;
+    max-width: 1500px;
+    margin: 0 auto;
+    /* padding-bottom: 75px; */
+}
+
+.section-header{
+    font-family: "Dancing Script";
+    font-weight: normal;
+    /* color: #333; */
+    color:black;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.about-band-image{
+    display: block;
+    width: 300px; /* width of container */
+    height: 350px; /* height of container */
+    object-fit: cover;
+    border: 5px solid pink;
+    object-position: 0% 85%; /* try 20px 10px */ 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 115px;
+}
+
+.about-us-image{
+    display: block;
+    width: 400px; /* width of container */
+    height: 400px; /* height of container */
+    object-fit: cover;
+    border: 2px solid skyblue;
+    object-position: 0% 85%; /* try 20px 10px */ 
+    /* margin-left: auto; */
+    margin-right: auto;
+    margin-top: 85px;
+}
+
+.pic-nextto-pic img{
+    display: inline-block;
+}
+
+.about-us-image2{
+    /* display: block; */
+    width: 400px; /* width of container */
+    height: 400px; /* height of container */
+    object-fit: cover;
+    border: 2px solid skyblue;
+    object-position: 0% 85%; /* try 20px 10px */ 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 85px;
+}
+.about-band-image:hover{
+    border: 8px solid white;
+}
+
+.about-band-image:active{
+    opacity: 0.95;
+    border: 10px solid black;
+}
+
+.main-footer{
+    /* color: white; */
+    padding: 0.25em 0em;
+    margin-top: 145px;
+    position: relative;
+    padding: 0%;
+}
+
+.main-footer-container{
+    display: flex;
+    align-items: center;
+}
+
+.main-footer-container ul{
+    flex-grow: 11;
+    text-align: end;
+}
+
+.main-footer-container ul a:hover{
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
+
+.footer-nav img{
+    height: 50px;
+}
+
+.cute-font{
+    font-weight: normal;
+    color:black;
+    /* text-align: right; */
+    font-size: 2.5em;
+    font-family: "Indie Flower";
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+.cute-font:hover{
+    opacity: 0.4;
+    transition: all 0.3s ease-in-out;
+}
+
+
+form{
+    margin-top: 30px;
+}
+
+.input_div{
+    text-align: center;
+    font-family: "Karla";
+}
+
+form input, label, .answer_list{
+    font-family: "Karla";
+    position: relative;
+    /* float: left; */
+    /* text-align: center; */
+    padding: .5em;
+    /* color: white; */
+    object-fit: cover;
+}
+
+#weight_input,#food_input,#protein_input{
+    text-decoration: none;
+    width: 300px;
+    border-left: 1px;
+    border-right: 1px;
+    border-top: 1px;
+    border-color: pink;
+}
+
+#weight_input:focus,#food_input:focus,#protein_input:focus {
+    outline:none!important;
+}
+
+.button_input{
+    background-color: deepskyblue;
+    border: none;
+    color: white;
+    padding: 13px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: "Dancing Script";
+}
+
+.button_input:hover{
+    background-color:pink;
+}
+
+/* TRANSITION ANIMATION */
+.transition-fade, .transition-fade1{
+    opacity: 1;
+    transition: 750ms;
+    transform: translateX(0);
+    transform-origin: left;
+}
+
+.transition-fade1{
+    transition: 1000ms;
+}
+
+html.is-animating .transition-fade{
+    opacity: 1;
+    transform: translateY(-30px);
+}
+
+html.is-leaving .transition-fade{
+    opacity: 1;
+}
+
+html.is-animating .transition-fade1{
+    opacity: 1;
+    transform: translateY(-90px);
+}
+
+html.is-leaving .transition-fade1{
+    opacity: 0.5;
+}
+
+.month-side-bar{
+    /* position: relative; */
+    /* margin-bottom: 30px; */
+    margin-top: 0px;
+    padding: 0;
+}
+
+.month-calendar{
+    /* position: absolute; */
+    text-align: center;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding: 0;
+}
+
+.month-calendar a{
+    margin: 0;
+    display: inline-block;
+    padding: .5em;
+    color: black;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: lighter;
+    /* background-color: lightslategray; */
+
+}
+
+.month-calendar ul{
+    margin: 0;
+    padding: 0;
+}
+
+.month-calendar li{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.month-calendar a:hover{
+    /* background-color: pink; */
+    margin: 4px;
+    transition: 0.3s;
+    /* width:2em; */
+    color: pink;
+}
+
+.chosen-month a{
+    background-color: olivedrab;
+    color: white;
+}

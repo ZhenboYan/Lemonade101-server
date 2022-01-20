@@ -1,0 +1,90 @@
+.menu-nav-main{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #FFF;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 1000;
+}
+
+.btn-toggle-nav{
+    padding-left: 0px;
+    width: 52px;
+    height: 100%;
+    /* background-color: #F98F39; */
+    background-image: url("https://mpng.subpng.com/20190314/apa/kisspng-computer-icons-vector-graphics-clip-art-hamburger-5c8ad46db1d6e1.1831787715526022217284.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    cursor: pointer;
+}
+
+.menu-nav-main ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 15px;
+    /* get rid of bullet button */
+    /* list-style-type: none;  */
+}
+
+.menu-nav-main ul li{
+    list-style: none;
+    line-height: 30px;
+}
+
+.menu-nav-main ul li a{
+    display: block;
+    height: 100%;
+    padding: 0 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+    font-family: arial;
+    font-size: 16px;
+}
+
+.menu-btn-toggle-nav:hover{
+    opacity: 0.5;
+}
+
+.menu-nav-sidebar{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: calc(100vh - 67px);
+    padding: 0 5px;
+    background-color: #808080;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-nav-sidebar ul{
+    padding-top: 15px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.menu-nav-sidebar ul li{
+    line-height: 60px;
+    list-style: none;
+}
+
+.menu-nav-sidebar ul li span, .menu-nav-sidebar ul li a{
+    display: block;
+    height: 60px;
+    padding: 0 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: pink;
+    font-family: arial;
+    font-size: 16px;
+    white-space: nowrap;
+    opacity: 0;
+}
+
+.menu-nav-sidebar ul li a:hover{
+    background-color: #222;
+}

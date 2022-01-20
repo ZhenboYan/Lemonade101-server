@@ -1,0 +1,206 @@
+html
+    head 
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.0/chart.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js")
+        script(src="https://unpkg.com/swup@latest/dist/swup.min.js")
+        title Analysis | Lemonade101
+        link(rel="stylesheet" href="https://lemonade101.page/base/basecss")
+
+    body
+        header(class="main-header")
+            nav(class="nav main-nav")
+                //- div(class="btn-toggle-nav" onclick="toggleNav()")
+                ul
+                    li
+                        a(href="https://lemonade101.page") Home
+            
+        main(id="swup" class="transition-fade")
+            nav(class="nav main-nav-second")
+                ul
+                    li
+                        a(href="https://lemonade101.page/chart") Bar
+                    li
+                        a(href="https://lemonade101.page/chart/line") Line
+                    li
+                        a(href="https://lemonade101.page/chart/latest" class="hourchart") Hour
+                    li
+                        a(href="https://lemonade101.page/chart/feeding") Feeding
+                    li
+                        a(href="https://lemonade101.page/chart/monthly") Monthly
+
+
+            nav(class="nav main-nav")
+
+            h6(class="thirdchart") Hourly Line Chart
+            
+
+            div(class="container container-chart")
+                canvas(id="myChart")
+                script.
+                    console.log("Please Refresh the Page");
+
+                    let myChart = document.getElementById('myChart').getContext('2d');
+                    // Chart.defaults.font.family = 'Georgia';
+                    Chart.defaults.font.size=12;
+                    Chart.defaults.color='black';
+
+                    let total_consumption = [0,0,0,0,0,0,0];
+                    let days = ["0","0","0","0","0","0","0"];
+                    let consumption = 0;
+                    var obj = !{JSON.stringify(obj)};
+                    let last_day = obj[obj.length-1].Day;
+                    let day_counter = 0;
+                    let i = 1;
+
+                    function addData(chart, label, data) {
+                        chart.data.labels.push(label);
+                        chart.data.datasets.forEach((dataset) => {
+                            dataset.data.push(data);
+                        });
+                        chart.update();
+                    }
+
+                    function removeData(chart) {
+                        chart.data.labels.pop();
+                        chart.data.datasets.forEach((dataset) => {
+                            dataset.data.pop();
+                        });
+                        chart.update();
+                    }
+                    
+                    let text_label = "Food Consumption (g) of ";
+                    text_label.concat(String(obj[obj.length-1].Day));
+                    // loop through each date to find the sum of consumption
+                    let dataChart = new Chart(myChart,{
+                        type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                        data: {
+                            labels:[],
+                            datasets:[{
+                                label:text_label,
+                                data:[
+                                ],
+                                backgroundColor:[
+                                    'pink'
+                                ],
+                                borderWidth:3,
+                                borderColor: 'tomato',
+                                hoverBorderWidth:3,
+                                hoverBorderColor: 'pink',
+                                fill: false,
+                                tension: 0.2
+                            }]
+                        },
+                        options: {
+                            scales:{
+                                y: {
+                                    min: 0,
+                                    //- suggestedMax: 16,
+                                    ticks: {
+                                        stepSize: 2
+                                    }
+                                }
+                                //- x: {
+                                //-     type: 'time',
+                                //-     time: {
+                                //-         displayFormats: {
+                                //-             quarter: 'MM/DD'
+                                //-         }
+                                //-     }
+                                //- }
+                            },
+                            elements: {
+                                point:{
+                                    radius: 2,
+                                    color:'pink'
+                                }
+                            },
+                            plugins:{
+                                title:{
+                                    display:true,
+                                    text:'Consumption Amount (g)',
+                                    fontSize:25
+                                },
+                                legend:{
+                                    display:false, //true for pie
+                                    position:'right',
+                                    labels:{
+                                        color:'pink'
+                                    }
+                                },
+                                annotation: {
+                                    //- annotations: {
+                                    //-     line_min:{
+                                    //-         type: 'line',
+                                    //-         yMin: 50,
+                                    //-         yMax: 50,
+                                    //-         borderColor: 'green',
+                                    //-         borderWidth: 2,
+                                    //-     },
+                                    //-     line_max:{
+                                    //-         type: 'line',
+                                    //-         yMin: 70,
+                                    //-         yMax: 70,
+                                    //-         borderColor: 'red',
+                                    //-         borderWidth: 2,
+                                    //-     }
+                                    //- }
+                                }
+                            },
+                            layout:{
+                                padding:{
+                                    left:0,
+                                    right:0,
+                                    bottom:0,
+                                    top:0
+                                }
+                            }
+                        }                
+                    })
+                    let j = 1;
+                    let today = obj[obj.length-1].Day;
+                    let reverse_date = [];
+                    let reverse_data = [];
+                    let index = 1;
+                    while(obj[obj.length-j].Day == today){
+                        if(String(obj[obj.length-j].Status) == 'Eating'){
+                            if(Math.abs(obj[obj.length-j].Change) < 22){
+                                reverse_data[index-1] = Math.abs(obj[obj.length-j].Change);
+                                reverse_date[index-1] = obj[obj.length-j].Hour;
+                                index++;
+                            }
+                        }
+                        j = j + 1;
+                    }
+
+                    let k = 1;
+                    let last_hour = 0;
+                    let current_hour = 0;
+                    let time_of_the_day = ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"];
+                    
+                    while(k <= reverse_data.length){
+                        let time_array = String(reverse_date[reverse_date.length-k]).split(":");
+                        current_hour = parseInt(time_array[0], 10);
+
+                        while(last_hour <= current_hour){
+                            addData(dataChart,time_of_the_day[last_hour],0);
+                            last_hour = last_hour + 1;
+                        }
+                        last_hour = current_hour + 1;
+                        if(last_hour >= 24){
+                            last_hour = 0;
+                        }
+                        addData(dataChart,reverse_date[reverse_date.length-k],reverse_data[reverse_date.length-k]);
+                        k = k + 1;
+                    }
+                    
+                    const swup = new Swup;
+                    const init = () =>{
+                        if(!window.location.hash) {
+                                window.location = window.location + '#loaded';
+                                window.location.reload();
+                        }
+                    }
+                    swup.on('contentReplaced', init);

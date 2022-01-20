@@ -1,0 +1,244 @@
+html
+    head 
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.0/chart.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.0.2/chartjs-plugin-annotation.min.js")
+        script(src="https://unpkg.com/swup@latest/dist/swup.min.js")
+        title Analysis | Lemonade101
+        link(rel="stylesheet" href="https://lemonade101.page/base/basecss")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+
+    body
+        header(class="main-header")
+            nav(class="nav main-nav")
+                ul
+                    li
+                        a(href="https://lemonade101.page") Home
+            
+        main(id="swup" class="transition-fade")
+            nav(class="nav main-nav-second")
+                ul
+                    li
+                        a(href="https://lemonade101.page/chart") Back
+                    li
+                        a(href="https://lemonade101.page/chart/monthly" class="monthlychart") Monthly
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/mealtime") Meal Time
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/frequency") Frequency
+                    li
+                        a(href="https://lemonade101.page/chart/past") Past
+
+            nav(class="nav main-nav")
+
+            h6(class="thismonth") Month Calendar
+                        
+            div(class="container container-chart")
+                canvas(id="myChart")
+                script.
+                    let myChart = document.getElementById('myChart').getContext('2d');
+                    Chart.defaults.font.size=12;
+                    Chart.defaults.color='black';
+                    let this_month = "01";
+                    month_array = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    var obj = !{JSON.stringify(obj)};
+                    
+                    function addData(chart, label, data) {
+                        chart.data.labels.push(label);
+                        chart.data.datasets.forEach((dataset) => {
+                            dataset.data.push(data);
+                        });
+                        chart.update();
+                    }
+                    let text_label = String("Food Consumption (g) by Day of " + month_array[parseInt(this_month) - 1]);
+                    // loop through each date to find the sum of consumption
+                    let dataChart = new Chart(myChart,{
+                        type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                        data: {
+                            labels:[],
+                            datasets:[{
+                                label:text_label,
+                                data:[
+                                ],
+                                backgroundColor:[
+                                    'pink'
+                                ],
+                                borderWidth:0.8,
+                                borderColor: 'black',
+                                hoverBorderWidth:3,
+                                hoverBorderColor: 'pink',
+                                fill: false,
+                                tension:0.1
+                            }]
+                        },
+                        options: {
+                            scales:{
+                                x:{
+                                    title: {
+                                        display: true,
+                                        text: 'Days',
+                                        color: 'black'
+                                    },
+                                    ticks:{
+                                        
+                                    }
+                                }
+                            },
+                            elements: {
+                                point:{
+                                    radius: 7
+                                        }
+                            },
+                            plugins:{
+                                title:{
+                                    display:true,
+                                    text:text_label,
+                                    fontSize:25
+                                },
+                                legend:{
+                                    display:false, //true for pie
+                                    position:'right',
+                                    labels:{
+                                        color:'pink'
+                                    }
+                                },
+                                annotation: {
+                                    annotations: {
+                                        line_min:{
+                                            type: 'line',
+                                            yMin: 50,
+                                            yMax: 50,
+                                            borderColor: 'green',
+                                            borderWidth: 2,
+                                        },
+                                        line_max:{
+                                            type: 'line',
+                                            yMin: 70,
+                                            yMax: 70,
+                                            borderColor: 'red',
+                                            borderWidth: 2,
+                                        }
+                                    }
+                                }
+                            },
+                            layout:{
+                                padding:{
+                                    left:0,
+                                    right:0,
+                                    bottom:0,
+                                    top:0
+                                }
+                            },
+                            responsive:true
+                        }                
+                    })
+                    let reverse_date = [];
+                    let reverse_data = [];
+                    let consumption = 0;
+                    let day_counter = 0;
+                    let i = 1;
+                    let total_consumption = 0;
+                    let max_amount = 0;
+                    let min_amount = 0;
+                    let max_day = "";
+                    let min_day = "";
+                    let right_month = true;
+                    let month_change = false;
+                    let last_day = "";
+                    let first_time = true;
+                    while(right_month && i <= obj.length){    
+                        if(String(obj[obj.length-i].Day).split("/")[0] == this_month){
+                            if(first_time){
+                                last_day = obj[obj.length-i].Day;
+                                first_time = false;
+                            }
+                            else if(!first_time){
+                                if(String(obj[obj.length-i].Day).split("/")[0] != this_month){
+                                    right_month = false;
+                                    break;
+                                }    
+                            }
+                            if(obj[obj.length-i].Day == last_day){
+                                if(obj[obj.length-i].Status == 'Eating'){
+                                    consumption = consumption + Math.abs(obj[obj.length-i].Change);
+                                }
+                            }
+                            else{
+                                if(consumption >= max_amount){
+                                    max_amount = consumption;
+                                    max_day = last_day;
+                                }
+                                if(consumption <= min_amount){
+                                    min_amount = consumption;
+                                    min_day = last_day;
+                                }
+                                total_consumption = total_consumption + consumption;
+                                reverse_data[day_counter] = consumption;
+                                reverse_date[day_counter] = last_day;
+                                consumption = 0;
+                                last_day = obj[obj.length-i].Day;
+                                day_counter = day_counter + 1;                                
+                            }
+                        }
+                        i = i + 1;
+                    }
+                    reverse_date[day_counter] = last_day;
+                    reverse_data[day_counter] = consumption;
+                    
+                    if(consumption >= max_amount){
+                        max_amount = consumption;
+                        max_day = last_day;
+                    }
+                    if(consumption <= min_amount){
+                        min_amount = consumption;
+                        min_day = last_day;
+                    }
+                    total_consumption = total_consumption + consumption;
+
+                    let average = (total_consumption - max_amount - min_amount) / (day_counter-2);
+                    let k = 1;
+                    while(k <= reverse_data.length){
+                        console.log(k);
+                        addData(dataChart,reverse_date[reverse_date.length-k],reverse_data[reverse_date.length-k]);
+                        k = k + 1;
+                    }
+                    
+                    const swup = new Swup;
+                    const init = () =>{
+                        if(!window.location.hash) {
+                                window.location = window.location + '#loaded';
+                                window.location.reload();
+                        }
+                    }
+                    swup.on('contentReplaced', init);
+        
+        aside(class="month-side-bar")
+            div(class="month-calendar")
+                ul
+                    li(class="chosen-month")
+                        a(href="https://lemonade101.page/chart/monthly/jan") Jan
+                        //- a(href="javascript:;" onclick="calculate()") Jan
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/feb") Feb
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/mar") Mar
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/apr") Apr
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/may") May
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/jun") Jun
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/jul") Jul
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/aug") Aug
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/sep") Sep
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/oct") Oct
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/nov") Nov
+                    li
+                        a(href="https://lemonade101.page/chart/monthly/dec") Dec
